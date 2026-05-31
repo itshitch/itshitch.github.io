@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title desc">
+  <title id="title">Project image placeholder 01</title>
+  <desc id="desc">A muted beach-toned abstract project image placeholder.</desc>
+  <rect width="800" height="500" fill="#efe5d4"/>
+  <circle cx="610" cy="130" r="54" fill="#e8be75"/>
+  <path d="M0 332 C150 292 260 371 402 328 C526 291 624 306 800 274 L800 500 L0 500 Z" fill="#9fb8a9"/>
+  <path d="M0 384 C170 338 294 421 440 378 C556 344 642 360 800 324 L800 500 L0 500 Z" fill="#6f9f90" opacity="0.78"/>
+  <rect x="38" y="38" width="724" height="424" fill="none" stroke="#24201f" stroke-opacity="0.28" stroke-width="3"/>
+  <text x="64" y="110" fill="#24201f" fill-opacity="0.62" font-family="Arial, sans-serif" font-size="54" font-weight="700">01</text>
+</svg>

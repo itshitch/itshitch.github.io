@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title desc">
+  <title id="title">Project image placeholder 05</title>
+  <desc id="desc">A muted experimental layout project image placeholder.</desc>
+  <rect width="800" height="500" fill="#efe7da"/>
+  <path d="M116 120 C190 70 260 78 326 138 C389 195 472 207 560 154 C620 118 672 122 718 150" fill="none" stroke="#496a74" stroke-opacity="0.55" stroke-width="16" stroke-linecap="round"/>
+  <path d="M116 236 C190 186 260 194 326 254 C389 311 472 323 560 270 C620 234 672 238 718 266" fill="none" stroke="#9fb8a9" stroke-opacity="0.74" stroke-width="16" stroke-linecap="round"/>
+  <path d="M116 352 C190 302 260 310 326 370 C389 427 472 439 560 386 C620 350 672 354 718 382" fill="none" stroke="#d6b09d" stroke-opacity="0.84" stroke-width="16" stroke-linecap="round"/>
+  <circle cx="188" cy="250" r="38" fill="#e8be75" opacity="0.86"/>
+  <rect x="38" y="38" width="724" height="424" fill="none" stroke="#24201f" stroke-opacity="0.28" stroke-width="3"/>
+  <text x="64" y="110" fill="#24201f" fill-opacity="0.62" font-family="Arial, sans-serif" font-size="54" font-weight="700">05</text>
+</svg>
