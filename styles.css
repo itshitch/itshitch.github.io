@@ -303,10 +303,13 @@ textarea {
 }
 
 .section-kicker {
-  width: fit-content;
+  width: 7.25rem;
   padding: 0.4rem 0.56rem 0.34rem;
   border: 1px solid rgba(36, 32, 31, 0.18);
   background: rgba(255, 250, 240, 0.58);
+  text-align: center;
+  white-space: nowrap;
+}
 }
 
 .about-grid {
