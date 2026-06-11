@@ -368,6 +368,17 @@ textarea {
   letter-spacing: normal;
 }
 
+.about-copy p a {
+  color: var(--sea-deep);
+  border-bottom: 1.5px solid currentColor;
+}
+
+.about-copy p a:hover,
+.about-copy p a:focus-visible {
+  color: var(--ink);
+  outline: none;
+}
+
 .personality-link {
   justify-self: start;
   width: fit-content;
