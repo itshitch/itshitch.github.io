@@ -11,30 +11,33 @@
   <link rel="stylesheet" href="https://use.typekit.net/ipr2mdn.css">
   <link rel="stylesheet" href="styles.css">
   <style>
-    /* Page-specific adjustments for the Name, Image & Likeness case study. */
-    .case-work-grid {
-      width: min(calc(100% - 32px), var(--max-width));
-      margin: 0 auto 3rem;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1.25rem;
-    }
+   <style>
+  /* Page-specific adjustments for the Name, Image & Likeness case study. */
+  .case-work-grid {
+    width: min(calc(100% - 32px), var(--max-width));
+    margin: 0 auto 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
 
-    .case-work-slot {
-      overflow: hidden;
-      margin: 0;
-      background: #f6ecd9;
-      border: 1.5px solid var(--ink);
-      box-shadow: none;
-    }
+  .case-work-slot {
+    width: fit-content;
+    max-width: 100%;
+    overflow: hidden;
+    margin: 0;
+    background: #f6ecd9;
+    border: 1.5px solid var(--ink);
+    box-shadow: none;
+  }
 
-    .case-work-slot img {
-      display: block;
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
-    }
-
+  .case-work-slot img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+  }
     .case-work-slot figcaption {
       padding: 0.75rem 0.9rem;
       color: var(--ink-soft);
@@ -65,16 +68,12 @@
       align-self: center;
     }
 
-    @media (max-width: 760px) {
-      .case-work-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .case-section h2 {
-        justify-self: start;
-        text-align: left;
-      }
-    }
+  @media (max-width: 760px) {
+  .case-section h2 {
+    justify-self: start;
+    text-align: left;
+  }
+}
   </style>
 </head>
 <body>
