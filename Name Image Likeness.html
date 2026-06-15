@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Name Image Likeness | Hitch</title>
+ <meta name="description" content="A case study page for sports team NIL graphics and social design work.">
+ <link rel="icon" type="image/png" href="/assets/favicon2.png">
+ <link rel="preconnect" href="https://use.typekit.net">
+ <link rel="preconnect" href="https://p.typekit.net" crossorigin>
+ <link rel="stylesheet" href="https://use.typekit.net/ipr2mdn.css">
+ <link rel="stylesheet" href="styles.css">
+ <style>
+  /* Carousel additions for the case-study image area. Keep this in the page, or move it into styles.css. */
+  .case-carousel {
+   position: relative;
+   background: #f6ecd9;
+  }
+
+  .case-carousel:focus-within {
+   outline: 3px solid rgba(35, 92, 134, 0.18);
+   outline-offset: 4px;
+  }
+
+  .carousel-viewport {
+   overflow: hidden;
+   width: 100%;
+   touch-action: pan-y;
+   cursor: grab;
+  }
+
+  .carousel-viewport:active {
+   cursor: grabbing;
+  }
+
+  .carousel-track {
+   display: flex;
+   transform: translateX(0);
+   transition: transform 320ms ease;
+   will-change: transform;
+  }
+
+  .carousel-slide {
+   flex: 0 0 100%;
+   margin: 0;
+   background: #f6ecd9;
+  }
+
+  .carousel-slide img {
+   width: 100%;
+   aspect-ratio: 16 / 9;
+   height: auto;
+   object-fit: cover;
+   background: #f6ecd9;
+  }
+
+  .carousel-control {
+   position: absolute;
+   top: 50%;
+   z-index: 3;
+   display: grid;
+   place-items: center;
+   width: 46px;
+   height: 46px;
+   padding: 0;
+   color: var(--ink);
+   background: rgba(255, 250, 240, 0.9);
+   border: 1.5px solid var(--ink);
+   border-radius: 0;
+   box-shadow: var(--button-shadow);
+   cursor: pointer;
+   transform: translateY(-50%);
+   transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+  }
+
+  .carousel-control:hover,
+  .carousel-control:focus-visible {
+   background: rgba(255, 250, 240, 1);
+   box-shadow: var(--block-shadow-strong);
+   outline: none;
+  }
+
+  .carousel-control:focus-visible {
+   outline: 3px solid rgba(35, 92, 134, 0.22);
+   outline-offset: 3px;
+  }
+
+  .carousel-control svg {
+   width: 20px;
+   height: 20px;
+  }
+
+  .carousel-prev {
+   left: 1rem;
+  }
+
+  .carousel-next {
+   right: 1rem;
+  }
+
+  .carousel-counter {
+   position: absolute;
+   right: 1rem;
+   bottom: 1rem;
+   z-index: 3;
+   padding: 0.4rem 0.58rem 0.34rem;
+   color: var(--ink);
+   background: rgba(255, 250, 240, 0.9);
+   border: 1px solid rgba(36, 32, 31, 0.22);
+   font-family: "slight-chance", ui-sans-serif, system-ui, sans-serif;
+   font-size: 0.76rem;
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
+  }
+
+  .carousel-dots {
+   position: absolute;
+   left: 50%;
+   bottom: 1rem;
+   z-index: 3;
+   display: flex;
+   gap: 0.45rem;
+   transform: translateX(-50%);
+  }
+
+  .carousel-dot {
+   width: 0.62rem;
+   height: 0.62rem;
+   padding: 0;
+   background: rgba(255, 250, 240, 0.9);
+   border: 1.5px solid var(--ink);
+   border-radius: 999px;
+   cursor: pointer;
+  }
+
+  .carousel-dot[aria-current="true"] {
+   background: var(--ink);
+  }
+
+  @media (max-width: 760px) {
+   .carousel-control {
+    width: 40px;
+    height: 40px;
+   }
+
+   .carousel-prev {
+    left: 0.7rem;
+   }
+
+   .carousel-next {
+    right: 0.7rem;
+   }
+
+   .carousel-counter {
+    right: 0.7rem;
+    bottom: 0.7rem;
+   }
+
+   .carousel-dots {
+    bottom: 0.78rem;
+   }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+   .carousel-track {
+    transition: none;
+   }
+  }
+ </style>
+</head>
+<body>
+ <main class="case-main">
+  <section class="case-hero" aria-labelledby="case-title">
+   <div>
+    <p class="eyebrow">Name, image, likeness</p>
+    <h1 id="case-title">Sports team graphics carousel.</h1>
+   </div>
+   <aside class="case-summary" aria-label="Project summary">
+    <dl>
+     <div>
+      <dt>Role</dt>
+      <dd>Creative direction, concept, design</dd>
+     </div>
+     <div>
+      <dt>Context</dt>
+      <dd>Sports team graphics, social content, and NIL creative</dd>
+     </div>
+     <div>
+      <dt>Tools</dt>
+      <dd>Adobe Creative Cloud, photography, social templates</dd>
+     </div>
+     <div>
+      <dt>Year</dt>
+      <dd>2026</dd>
+     </div>
+    </dl>
+   </aside>
+  </section>
+
+  <!-- Replace the image paths below with your uploaded files. Add or remove .carousel-slide blocks to use 5-10 graphics. -->
+  <section class="case-cover case-carousel" data-carousel aria-roledescription="carousel" aria-label="Sports team graphics carousel">
+   <button class="carousel-control carousel-prev" type="button" data-carousel-prev aria-label="Previous graphic">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+     <path d="M15.5 4.5 8 12l7.5 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" />
+    </svg>
+   </button>
+
+   <div class="carousel-viewport" data-carousel-viewport tabindex="0">
+    <div class="carousel-track" data-carousel-track>
+     <figure class="carousel-slide">
+      <img src="assets/nil/graphic-01.png" alt="Sports team graphic 1">
+     </figure>
+     <figure class="carousel-slide">
+      <img src="assets/nil/graphic-02.png" alt="Sports team graphic 2">
+     </figure>
+     <figure class="carousel-slide">
+      <img src="assets/nil/graphic-03.png" alt="Sports team graphic 3">
+     </figure>
+     <figure class="carousel-slide">
+      <img src="assets/nil/graphic-04.png" alt="Sports team graphic 4">
+     </figure>
+     <figure class="carousel-slide">
+      <img src="assets/nil/graphic-05.png" alt="Sports team graphic 5">
+     </figure>
+    </div>
+   </div>
+
+   <button class="carousel-control carousel-next" type="button" data-carousel-next aria-label="Next graphic">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+     <path d="M8.5 4.5 16 12l-7.5 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" />
+    </svg>
+   </button>
+
+   <div class="carousel-dots" data-carousel-dots aria-label="Choose graphic"></div>
+   <p class="carousel-counter" data-carousel-counter aria-live="polite">1 / 5</p>
+  </section>
+
+  <section class="case-section">
+   <h2>Overview</h2>
+   <div>
+    <p>Write three to five sentences explaining the project, the audience, the ask, and why it mattered. Keep it plain. A hiring manager should understand the assignment without needing extra context.</p>
+   </div>
+  </section>
+
+  <section class="case-section">
+   <h2>Challenge</h2>
+   <div>
+    <p>Explain the problem you were solving. Avoid making the project sound bigger than it was. A specific constraint is better than vague ambition.</p>
+    <ul>
+     <li>What needed to change?</li>
+     <li>Who was it for?</li>
+     <li>What constraints shaped the work?</li>
+    </ul>
+   </div>
+  </section>
+
+  <section class="case-section">
+   <h2>Approach</h2>
+   <div>
+    <p>Show how you thought. Include research, sketches, moodboards, copy territories, visual routes, feedback, or team collaboration. This is where broad creative range becomes credible.</p>
+   </div>
+  </section>
+
+  <section class="case-section">
+   <h2>Outcome</h2>
+   <div>
+    <p>Share what shipped, what you learned, and any results. Results can be quantitative, qualitative, or process-based: approvals, engagement, adoption, clearer positioning, stronger visual consistency, or a better team workflow.</p>
+   </div>
+  </section>
+ </main>
+
+ <footer class="site-footer">
+  <p>all works copyright Matthew Hitchcock 2025-2026.</p>
+  <nav aria-label="Footer navigation">
+   <a href="index.html#top">Home</a>
+   <a href="index.html#portfolio">Portfolio</a>
+   <a href="index.html#contact">Contact</a>
+  </nav>
+ </footer>
+
+ <script>
+  document.querySelectorAll('[data-carousel]').forEach((carousel) => {
+   const track = carousel.querySelector('[data-carousel-track]');
+   const viewport = carousel.querySelector('[data-carousel-viewport]');
+   const slides = Array.from(carousel.querySelectorAll('.carousel-slide'));
+   const prevButton = carousel.querySelector('[data-carousel-prev]');
+   const nextButton = carousel.querySelector('[data-carousel-next]');
+   const counter = carousel.querySelector('[data-carousel-counter]');
+   const dotsContainer = carousel.querySelector('[data-carousel-dots]');
+
+   if (!track || !viewport || slides.length === 0) return;
+
+   let currentIndex = 0;
+   let pointerStartX = 0;
+   let pointerDeltaX = 0;
+
+   const dots = slides.map((_, index) => {
+    const dot = document.createElement('button');
+    dot.className = 'carousel-dot';
+    dot.type = 'button';
+    dot.setAttribute('aria-label', `Show graphic ${index + 1}`);
+    dot.addEventListener('click', () => goToSlide(index));
+    dotsContainer.appendChild(dot);
+    return dot;
+   });
+
+   function wrapIndex(index) {
+    return (index + slides.length) % slides.length;
+   }
+
+   function goToSlide(index) {
+    currentIndex = wrapIndex(index);
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+    slides.forEach((slide, slideIndex) => {
+     slide.setAttribute('aria-hidden', slideIndex === currentIndex ? 'false' : 'true');
+    });
+
+    dots.forEach((dot, dotIndex) => {
+     dot.setAttribute('aria-current', dotIndex === currentIndex ? 'true' : 'false');
+    });
+
+    if (counter) {
+     counter.textContent = `${currentIndex + 1} / ${slides.length}`;
+    }
+   }
+
+   function showPrevious() {
+    goToSlide(currentIndex - 1);
+   }
+
+   function showNext() {
+    goToSlide(currentIndex + 1);
+   }
+
+   prevButton?.addEventListener('click', showPrevious);
+   nextButton?.addEventListener('click', showNext);
+
+   viewport.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowLeft') {
+     event.preventDefault();
+     showPrevious();
+    }
+
+    if (event.key === 'ArrowRight') {
+     event.preventDefault();
+     showNext();
+    }
+   });
+
+   viewport.addEventListener('pointerdown', (event) => {
+    pointerStartX = event.clientX;
+    pointerDeltaX = 0;
+    viewport.setPointerCapture?.(event.pointerId);
+   });
+
+   viewport.addEventListener('pointermove', (event) => {
+    if (!pointerStartX) return;
+    pointerDeltaX = event.clientX - pointerStartX;
+   });
+
+   viewport.addEventListener('pointerup', (event) => {
+    viewport.releasePointerCapture?.(event.pointerId);
+
+    if (Math.abs(pointerDeltaX) > 48) {
+     pointerDeltaX < 0 ? showNext() : showPrevious();
+    }
+
+    pointerStartX = 0;
+    pointerDeltaX = 0;
+   });
+
+   viewport.addEventListener('pointercancel', () => {
+    pointerStartX = 0;
+    pointerDeltaX = 0;
+   });
+
+   if (slides.length <= 1) {
+    prevButton?.setAttribute('hidden', '');
+    nextButton?.setAttribute('hidden', '');
+    dotsContainer?.setAttribute('hidden', '');
+    counter?.setAttribute('hidden', '');
+   }
+
+   goToSlide(0);
+  });
+ </script>
+</body>
+</html>
