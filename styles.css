@@ -509,11 +509,11 @@ textarea {
   display: block;
   max-width: 820px;
   font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.8vw, 4.1rem);
   font-weight: 700;
   font-style: normal;
-  font-weight: 700;
   line-height: 0.9;
-  letter-spacing: normal;
+  letter-spacing: -0.02em;
 }
 
 /* Contact */
