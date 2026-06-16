@@ -45,14 +45,25 @@
    background: #f6ecd9;
   }
 
-  .carousel-slide img {
-   width: 100%;
-   aspect-ratio: 16 / 9;
-   height: auto;
-   object-fit: cover;
-   background: #f6ecd9;
-  }
+ .carousel-slide {
+  flex: 0 0 100%;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: clamp(0.75rem, 2vw, 1.25rem);
+  background: #f6ecd9;
+  box-sizing: border-box;
+}
 
+.carousel-slide img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: min(82vh, 980px);
+  object-fit: contain;
+  background: #f6ecd9;
+}
   .carousel-control {
    position: absolute;
    top: 50%;
@@ -227,11 +238,7 @@
      </figure>
       <figure class="carousel-slide">
       <img src="assets/gamecock-ultimate/splitsquadgraphic.png" alt="Tournament Announcement Graphic">
-     </figure>
-    </div>
-     <figure class="carousel-slide">
-      <img src="assets/gamecock-ultimate/QCTU-9.jpg" alt="Panoramic Photoo of the Sidelines' Reaction to a Big Play">
-     </figure>
+      </figure>
      <figure class="carousel-slide">
       <img src="assets/gamecock-ultimate/rosterpost2026draft5.png" alt="Graphic Announcing the 2026 Roster">
      </figure>
