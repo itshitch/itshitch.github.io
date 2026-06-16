@@ -552,8 +552,11 @@
 
         var currentIndex = 0;
         var pointerStartX = null;
+        var pointerStartY = null;
         var pointerDeltaX = 0;
-        var suppressImageClick = false;
+        var pointerDeltaY = 0;
+        var pointerStartedOnImage = null;
+        var suppressNextImageClick = false;
         var dots = [];
 
         if (dotsContainer) {
@@ -619,6 +622,22 @@
           goToSlide(currentIndex + 1);
         }
 
+        function closestCarouselImage(target) {
+          if (!target || typeof target.closest !== 'function') {
+            return null;
+          }
+
+          return target.closest('.carousel-slide img');
+        }
+
+        function slideForImage(image) {
+          if (!image || typeof image.closest !== 'function') {
+            return null;
+          }
+
+          return image.closest('.carousel-slide');
+        }
+
         if (prevButton) {
           prevButton.addEventListener('click', showPrevious);
         }
@@ -635,7 +654,7 @@
           }
 
           image.addEventListener('click', function (event) {
-            if (suppressImageClick) {
+            if (suppressNextImageClick) {
               event.preventDefault();
               return;
             }
@@ -664,13 +683,16 @@
         });
 
         viewport.addEventListener('pointerdown', function (event) {
-          if (event.button && event.button !== 0) {
+          if (typeof event.button === 'number' && event.button !== 0) {
             return;
           }
 
           pointerStartX = event.clientX;
+          pointerStartY = event.clientY;
           pointerDeltaX = 0;
-          suppressImageClick = false;
+          pointerDeltaY = 0;
+          pointerStartedOnImage = closestCarouselImage(event.target);
+          suppressNextImageClick = false;
 
           if (viewport.setPointerCapture) {
             viewport.setPointerCapture(event.pointerId);
@@ -678,15 +700,12 @@
         });
 
         viewport.addEventListener('pointermove', function (event) {
-          if (pointerStartX === null) {
+          if (pointerStartX === null || pointerStartY === null) {
             return;
           }
 
           pointerDeltaX = event.clientX - pointerStartX;
-
-          if (Math.abs(pointerDeltaX) > 8) {
-            suppressImageClick = true;
-          }
+          pointerDeltaY = event.clientY - pointerStartY;
         });
 
         viewport.addEventListener('pointerup', function (event) {
@@ -694,26 +713,44 @@
             viewport.releasePointerCapture(event.pointerId);
           }
 
-          if (pointerStartX !== null && Math.abs(pointerDeltaX) > 48) {
-            if (pointerDeltaX < 0) {
-              showNext();
-            } else {
-              showPrevious();
+          if (pointerStartX !== null && pointerStartY !== null) {
+            var absX = Math.abs(pointerDeltaX);
+            var absY = Math.abs(pointerDeltaY);
+            var startedImage = pointerStartedOnImage;
+
+            if (absX > 48 && absX > absY) {
+              event.preventDefault();
+
+              if (pointerDeltaX < 0) {
+                showNext();
+              } else {
+                showPrevious();
+              }
+            } else if (startedImage && absX < 8 && absY < 8) {
+              event.preventDefault();
+              openLightbox(slideForImage(startedImage), startedImage);
+
+              suppressNextImageClick = true;
+              window.setTimeout(function () {
+                suppressNextImageClick = false;
+              }, 120);
             }
           }
 
           pointerStartX = null;
+          pointerStartY = null;
           pointerDeltaX = 0;
-
-          window.setTimeout(function () {
-            suppressImageClick = false;
-          }, 0);
+          pointerDeltaY = 0;
+          pointerStartedOnImage = null;
         });
 
         viewport.addEventListener('pointercancel', function () {
           pointerStartX = null;
+          pointerStartY = null;
           pointerDeltaX = 0;
-          suppressImageClick = false;
+          pointerDeltaY = 0;
+          pointerStartedOnImage = null;
+          suppressNextImageClick = false;
         });
 
         if (slides.length <= 1) {
