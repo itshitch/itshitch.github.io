@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coke Float Promo Video | Matthew Hitchcock</title>
+  <meta name="description" content="Portfolio case study page for a 30-second Coke float promo video." />
+
+  <style>
+    :root {
+      --bg: #f6f0e7;
+      --ink: #161412;
+      --muted: #686159;
+      --soft: #ddd2c5;
+      --panel: #eee5da;
+      --white: #fffaf3;
+      --shadow: 0 22px 70px rgba(22, 20, 18, 0.12);
+      --max: 1160px;
+      --gutter: clamp(20px, 4vw, 54px);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+      text-rendering: geometricPrecision;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img,
+    iframe {
+      display: block;
+      max-width: 100%;
+    }
+
+    .page {
+      width: min(var(--max), calc(100% - var(--gutter) * 2));
+      margin: 0 auto;
+      padding: clamp(26px, 4vw, 52px) 0 32px;
+    }
+
+    .project-jump {
+      display: inline-block;
+      margin-bottom: clamp(48px, 7vw, 92px);
+      color: var(--muted);
+      font-size: clamp(0.88rem, 1.1vw, 1rem);
+      letter-spacing: -0.01em;
+      transition: color 160ms ease;
+    }
+
+    .project-jump:hover,
+    .footer-nav a:hover {
+      color: var(--ink);
+    }
+
+    .project-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(290px, 0.75fr);
+      gap: clamp(34px, 6vw, 86px);
+      align-items: end;
+      margin-bottom: clamp(38px, 6vw, 76px);
+    }
+
+    .project-title {
+      margin: 0;
+      max-width: 830px;
+      font-size: clamp(3.4rem, 10vw, 9.8rem);
+      line-height: 0.88;
+      letter-spacing: -0.085em;
+      font-weight: 850;
+    }
+
+    .project-meta {
+      margin: 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 21px;
+      border-top: 1px solid var(--soft);
+      padding-top: 18px;
+    }
+
+    .meta-item {
+      display: grid;
+      grid-template-columns: 88px 1fr;
+      gap: 18px;
+      align-items: start;
+      border-bottom: 1px solid var(--soft);
+      padding-bottom: 18px;
+    }
+
+    .meta-item dt {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .meta-item dd {
+      margin: 0;
+      font-size: 1rem;
+      letter-spacing: -0.015em;
+    }
+
+    .video-section {
+      margin-bottom: clamp(54px, 8vw, 106px);
+    }
+
+    .video-frame {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background:
+        radial-gradient(circle at 18% 24%, rgba(255, 255, 255, 0.16), transparent 28%),
+        linear-gradient(135deg, #1a1714 0%, #2b2520 100%);
+      border: 1px solid rgba(22, 20, 18, 0.18);
+      box-shadow: var(--shadow);
+    }
+
+    .video-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .embed-placeholder {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: clamp(20px, 4vw, 48px);
+      color: var(--white);
+      text-align: center;
+    }
+
+    .embed-placeholder-inner {
+      width: min(640px, 92%);
+    }
+
+    .embed-label {
+      display: block;
+      margin-bottom: 16px;
+      color: rgba(255, 250, 243, 0.64);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .embed-placeholder h2 {
+      margin: 0 0 12px;
+      font-size: clamp(2.1rem, 5.2vw, 6rem);
+      line-height: 0.9;
+      letter-spacing: -0.075em;
+      font-weight: 850;
+    }
+
+    .embed-placeholder p {
+      margin: 0 auto;
+      max-width: 520px;
+      color: rgba(255, 250, 243, 0.72);
+      font-size: clamp(0.95rem, 1.4vw, 1.12rem);
+    }
+
+    .brief-description {
+      width: min(780px, 100%);
+      margin: 22px 0 0 auto;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.55vw, 1.28rem);
+      line-height: 1.48;
+      letter-spacing: -0.02em;
+    }
+
+    .content-sections {
+      display: grid;
+      gap: clamp(42px, 5vw, 72px);
+      padding-top: clamp(8px, 2vw, 20px);
+    }
+
+    .case-section {
+      display: grid;
+      grid-template-columns: minmax(180px, 0.35fr) minmax(0, 0.65fr);
+      gap: clamp(28px, 5vw, 78px);
+      border-top: 1px solid var(--soft);
+      padding-top: clamp(24px, 3.6vw, 40px);
+    }
+
+    .case-section h2 {
+      margin: 0;
+      font-size: clamp(2.25rem, 5vw, 5.1rem);
+      line-height: 0.92;
+      letter-spacing: -0.075em;
+      font-weight: 830;
+    }
+
+    .case-copy {
+      color: var(--muted);
+      font-size: clamp(1rem, 1.4vw, 1.18rem);
+      line-height: 1.62;
+      letter-spacing: -0.012em;
+    }
+
+    .case-copy p {
+      margin: 0 0 18px;
+    }
+
+    .case-copy p:last-child {
+      margin-bottom: 0;
+    }
+
+    .case-copy ul {
+      margin: 18px 0 0;
+      padding-left: 1.1rem;
+    }
+
+    .case-copy li {
+      padding-left: 0.2rem;
+      margin-bottom: 7px;
+    }
+
+    .footer {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+      border-top: 1px solid var(--soft);
+      margin-top: clamp(62px, 9vw, 118px);
+      padding-top: 24px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .footer p {
+      margin: 0;
+    }
+
+    .footer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 18px;
+    }
+
+    @media (max-width: 860px) {
+      .project-header,
+      .case-section,
+      .footer {
+        grid-template-columns: 1fr;
+      }
+
+      .project-meta {
+        max-width: 620px;
+      }
+
+      .brief-description {
+        margin-left: 0;
+      }
+
+      .footer-nav {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .page {
+        width: min(100% - 32px, var(--max));
+      }
+
+      .meta-item {
+        grid-template-columns: 1fr;
+        gap: 5px;
+      }
+
+      .video-frame {
+        aspect-ratio: 4 / 5;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="project-jump" href="./gamecock-ultimate.html">Gamecock Ultimate</a>
+
+    <header class="project-header" aria-labelledby="project-title">
+      <h1 class="project-title" id="project-title">Coke Float Promo Video</h1>
+
+      <dl class="project-meta" aria-label="Project details">
+        <div class="meta-item">
+          <dt>Role</dt>
+          <dd>Videographer, Editor</dd>
+        </div>
+        <div class="meta-item">
+          <dt>Context</dt>
+          <dd>30-second promo video for a Coke float</dd>
+        </div>
+        <div class="meta-item">
+          <dt>Tools</dt>
+          <dd>Premiere Pro, After Effects, Camera</dd>
+        </div>
+        <div class="meta-item">
+          <dt>Year</dt>
+          <dd>2026</dd>
+        </div>
+      </dl>
+    </header>
+
+    <section class="video-section" aria-label="Project video">
+      <!--
+        Paste your YouTube URL in data-youtube-url below.
+        Works with normal links like https://www.youtube.com/watch?v=VIDEO_ID
+        or short links like https://youtu.be/VIDEO_ID.
+      -->
+      <div class="video-frame" data-youtube-url="">
+        <div class="embed-placeholder" aria-hidden="true">
+          <div class="embed-placeholder-inner">
+            <span class="embed-label">YouTube embed</span>
+            <h2>Paste video link here</h2>
+            <p>Replace the empty data-youtube-url attribute with your YouTube link to embed the finished 30-second promo.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="brief-description">
+        Write a brief description here. Keep it to one or two sentences explaining what the Coke float promo is, where it was used, and what the viewer should notice first.
+      </p>
+    </section>
+
+    <section class="content-sections" aria-label="Case study details">
+      <article class="case-section" id="overview">
+        <h2>Overview</h2>
+        <div class="case-copy">
+          <p>
+            Write three to five sentences explaining the project, the audience, the ask, and why the 30-second format mattered. Keep it plain and specific so someone reviewing your portfolio understands the assignment quickly.
+          </p>
+        </div>
+      </article>
+
+      <article class="case-section" id="challenge">
+        <h2>Challenge</h2>
+        <div class="case-copy">
+          <p>
+            Explain the problem you were solving. Focus on the constraints that shaped the promo, such as time, location, product styling, pacing, lighting, or making the Coke float feel appealing in a short runtime.
+          </p>
+          <ul>
+            <li>What needed to feel clear within 30 seconds?</li>
+            <li>Who was the promo trying to reach?</li>
+            <li>What production limits shaped the final video?</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="case-section" id="approach">
+        <h2>Approach</h2>
+        <div class="case-copy">
+          <p>
+            Show how you thought through the piece. Include the visual direction, shot list, editing rhythm, sound choices, product closeups, typography, color treatment, feedback, or anything else that made the promo work.
+          </p>
+        </div>
+      </article>
+
+      <article class="case-section" id="outcome">
+        <h2>Outcome</h2>
+        <div class="case-copy">
+          <p>
+            Share what shipped, what you learned, and any results. Results can be numbers, audience reaction, client approval, stronger product appeal, a cleaner workflow, or a better understanding of short-form promo editing.
+          </p>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="page footer">
+    <p>all works copyright Matthew Hitchcock 2025-2026.</p>
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="./index.html">Home</a>
+      <a href="./index.html#portfolio">Portfolio</a>
+      <a href="./index.html#contact">Contact</a>
+    </nav>
+  </footer>
+
+  <script>
+    (function () {
+      var videoFrame = document.querySelector(".video-frame[data-youtube-url]");
+      if (!videoFrame) return;
+
+      var rawUrl = videoFrame.getAttribute("data-youtube-url").trim();
+      if (!rawUrl) return;
+
+      function getYouTubeEmbedUrl(value) {
+        try {
+          var url = new URL(value);
+          var host = url.hostname.replace(/^www\./, "");
+          var id = "";
+
+          if (host === "youtu.be") {
+            id = url.pathname.split("/").filter(Boolean)[0] || "";
+          } else if (host === "youtube.com" || host === "m.youtube.com") {
+            if (url.pathname === "/watch") {
+              id = url.searchParams.get("v") || "";
+            } else if (url.pathname.indexOf("/embed/") === 0) {
+              id = url.pathname.split("/")[2] || "";
+            } else if (url.pathname.indexOf("/shorts/") === 0) {
+              id = url.pathname.split("/")[2] || "";
+            }
+          }
+
+          return id ? "https://www.youtube.com/embed/" + encodeURIComponent(id) : "";
+        } catch (error) {
+          return "";
+        }
+      }
+
+      var embedUrl = getYouTubeEmbedUrl(rawUrl);
+      if (!embedUrl) return;
+
+      videoFrame.innerHTML = "";
+      var iframe = document.createElement("iframe");
+      iframe.src = embedUrl;
+      iframe.title = "Coke Float Promo Video";
+      iframe.loading = "lazy";
+      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      iframe.allowFullscreen = true;
+      videoFrame.appendChild(iframe);
+    })();
+  </script>
+</body>
+</html>
