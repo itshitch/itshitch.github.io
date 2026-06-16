@@ -123,6 +123,31 @@
    text-transform: uppercase;
   }
 
+  .carousel-caption-box {
+  margin: 0;
+  padding: 0.9rem 1rem 0.85rem;
+  color: var(--ink);
+  background: rgba(255, 250, 240, 0.92);
+  border-top: 1.5px solid var(--ink);
+  font-family: inherit;
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+  .carousel-caption-box {
+  background: #fff;
+}
+
+  .case-cover.case-carousel {
+  background: #fff;
+  box-shadow: none;
+}
+
+.carousel-viewport,
+.carousel-track,
+.carousel-slide {
+  background: #fff;
+}
+
   .carousel-dots {
    position: absolute;
    left: 50%;
@@ -221,25 +246,25 @@
 
    <div class="carousel-viewport" data-carousel-viewport tabindex="0">
     <div class="carousel-track" data-carousel-track>
-     <figure class="carousel-slide">
+     <figure class="carousel-slide" data-caption="A graphic honoring the 2026 senior class.">
       <img src="assets/gamecock-ultimate/v2finalseniorpost.png" alt="Playing Card Themed Senior Sendoff Post">
      </figure>
-     <figure class="carousel-slide">
+     <figure class="carousel-slide" data-caption="A graphic announcing one of the new 2026 captains.">
       <img src="assets/gamecock-ultimate/nickcaptain.png" alt="Layered Graphic Introducing a New Captain">
      </figure>
-     <figure class="carousel-slide">
+     <figure class="carousel-slide" data-caption="A hero graphic for a former captain.">
       <img src="assets/gamecock-ultimate/tcat.png" alt="Hero Graphic for a Former Captain">
      </figure>
-     <figure class="carousel-slide">
+     <figure class="carousel-slide" data-caption="A postgame photo of a player in the huddle.">
       <img src="assets/gamecock-ultimate/QCTU-47.jpg" alt="Postgame Photo of a Player in the Huddle">
      </figure>
-     <figure class="carousel-slide">
+     <figure class="carousel-slide" data-caption="A YouTube thumbnail for the 2026 Callahan Nominee, an award given to the most outstanding college player.">
       <img src="assets/gamecock-ultimate/lopezcallahanfinalthumbnail.png" alt="YouTube Thumbnail Announcing our 2026 Callahan Nominee">
      </figure>
-      <figure class="carousel-slide">
+      <figure class="carousel-slide" data-caption="A graphic announcing a future tournament.">
       <img src="assets/gamecock-ultimate/splitsquadgraphic.png" alt="Tournament Announcement Graphic">
       </figure>
-     <figure class="carousel-slide">
+     <figure class="carousel-slide" data-caption="A graphic announcing the 2026 roster.">
       <img src="assets/gamecock-ultimate/rosterpost2026draft5.png" alt="Graphic Announcing the 2026 Roster">
      </figure>
    </div>
@@ -251,7 +276,9 @@
    </button>
 
    <div class="carousel-dots" data-carousel-dots aria-label="Choose graphic"></div>
-   <p class="carousel-counter" data-carousel-counter aria-live="polite">1 / 5</p>
+   <p class="carousel-counter" data-carousel-counter aria-live="polite">1 / 7</p>
+
+    <p class="carousel-caption-box" data-carousel-caption aria-live="polite"></p>
   </section>
 
   <section class="case-section">
@@ -306,6 +333,7 @@
    const nextButton = carousel.querySelector('[data-carousel-next]');
    const counter = carousel.querySelector('[data-carousel-counter]');
    const dotsContainer = carousel.querySelector('[data-carousel-dots]');
+   const captionBox = carousel.querySelector('[data-carousel-caption]');
 
    if (!track || !viewport || slides.length === 0) return;
 
@@ -342,7 +370,10 @@
     if (counter) {
      counter.textContent = `${currentIndex + 1} / ${slides.length}`;
     }
-   }
+    if (captionBox) {
+     captionBox.textContent = slides[currentIndex].dataset.caption || '';
+    }
+   
 
    function showPrevious() {
     goToSlide(currentIndex - 1);
