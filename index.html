@@ -14,6 +14,33 @@
   <link rel="preconnect" href="https://p.typekit.net" crossorigin>
   <link rel="stylesheet" href="https://use.typekit.net/ipr2mdn.css">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .portfolio-button {
+      position: relative;
+    }
+
+    .portfolio-type-label {
+      position: absolute;
+      z-index: 2;
+      top: clamp(0.7rem, 1.6vw, 1.05rem);
+      left: clamp(0.7rem, 1.6vw, 1.05rem);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 4.5rem;
+      padding: 0.28rem 0.42rem 0.22rem;
+      color: var(--ink);
+      background: rgba(255, 250, 240, 0.82);
+      border: 1px solid rgba(36, 32, 31, 0.28);
+      font-family: "slight-chance", ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.68rem;
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#portfolio">Skip to portfolio</a>
@@ -28,6 +55,7 @@
         <p class="eyebrow">Matthew Hitchcock is designing from Columbia, SC</p>
         <h1 id="hero-title">Hi, I'm Hitch</h1>
         <p class="hero-copy">Welcome to my website. <a href="#contact">Let's make something together.</a></p>
+
         <div class="hero-actions" aria-label="Portfolio actions">
           <a class="button button-primary hero-work-button" href="#portfolio">View my work</a>
         </div>
@@ -43,10 +71,12 @@
     <section class="about-section page-section" id="about" aria-labelledby="about-title">
       <div class="about-shell">
         <h2 class="section-kicker" id="about-title">About</h2>
+
         <div class="about-grid">
           <figure class="about-portrait">
             <img src="assets/about-portrait-placeholder.svg" alt="Vertical photo placeholder">
           </figure>
+
           <div class="about-copy">
             <p>I love to tell stories that words alone just don’t do justice. I’m a senior visual communications student at USC, and I capture stories through design, videography and photography.</p>
             <p>Currently, I’m the creative director at <a href="https://www.thinktca.com" target="_blank">the Carolina Agency</a>: a student-run, faculty-advised ad agency that creates deliverables for real businesses and nonprofits across the Southeast.</p>
@@ -60,14 +90,15 @@
 
     <section class="portfolio-section page-section" id="portfolio" aria-labelledby="portfolio-title">
       <div class="portfolio-shell">
-       <header class="portfolio-header">
+        <header class="portfolio-header">
           <p class="section-kicker">Portfolio</p>
           <h2 id="portfolio-title">Selected work</h2>
           <p>Here are a few of the projects I’ve created recently.</p>
-    </header>
+        </header>
 
         <div class="portfolio-list" aria-label="Selected projects">
           <a class="portfolio-button" href="gamecock-ultimate" aria-label="Open Gamecock Ultimate Case Study">
+            <span class="portfolio-type-label" aria-hidden="true">design</span>
             <span class="portfolio-thumb">
               <img src="assets/gcucardport.png" alt="Gamecock Ultimate Title Image">
             </span>
@@ -78,6 +109,7 @@
           </a>
 
           <a class="portfolio-button" href="name-image-likeness.html" aria-label="Open Name, Image &amp; Likeness Case Study">
+            <span class="portfolio-type-label" aria-hidden="true">design</span>
             <span class="portfolio-thumb">
               <img src="assets/magazine illustration.png" alt="Magazine Spread Title Image">
             </span>
@@ -88,6 +120,7 @@
           </a>
 
           <a class="portfolio-button" href="coke-float-promo.html" aria-label="Open Coke Float Promotional Video">
+            <span class="portfolio-type-label" aria-hidden="true">video</span>
             <span class="portfolio-thumb">
               <img src="assets/cokecardport.png" alt="Cherry Coke Float Zero Sugar Can">
             </span>
@@ -98,6 +131,7 @@
           </a>
 
           <a class="portfolio-button" href="firetruck-pull.html" aria-label="Open Firetruck Pull Mini Doc">
+            <span class="portfolio-type-label" aria-hidden="true">video</span>
             <span class="portfolio-thumb">
               <img src="assets/minidoccardport.png" alt="Curing Kids Cancer Mini Doc title image">
             </span>
@@ -108,6 +142,7 @@
           </a>
 
           <a class="portfolio-button" href="track-photo-essay.html" aria-label="Open Track photo series">
+            <span class="portfolio-type-label" aria-hidden="true">photo</span>
             <span class="portfolio-thumb">
               <img src="assets/essaycardport.png" alt="Track meet photo essay title image">
             </span>
@@ -118,6 +153,7 @@
           </a>
 
           <a class="portfolio-button" href="creek-and-coast-shoot.html" aria-label="Open Design experiments case study">
+            <span class="portfolio-type-label" aria-hidden="true">photo</span>
             <span class="portfolio-thumb">
               <img src="assets/creekcardport.png" alt="Creek and Coast product shoot title image">
             </span>
@@ -143,20 +179,24 @@
         <div class="contact-card contact-form-card">
           <form class="contact-form" action="https://formspree.io/f/xzdwlbbp" method="POST">
             <input type="hidden" name="_subject" value="New portfolio contact form message">
+
             <label for="contact-email">
               <span>Email</span>
               <input id="contact-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
             </label>
+
             <label for="contact-message">
               <span>Message</span>
               <textarea id="contact-message" name="message" rows="6" placeholder="Write a message." required></textarea>
             </label>
+
             <button class="button button-primary contact-submit" type="submit">Send message</button>
           </form>
 
           <aside class="contact-aside" aria-label="Other contact links">
             <p class="project-meta">Elsewhere</p>
             <p>You can also find me here. Give me a follow if you like my work!</p>
+
             <div class="contact-links">
               <a href="https://www.linkedin.com/in/itshitch/" target="_blank">LinkedIn</a>
               <a href="https://www.instagram.com/hitchmediaco/" target="_blank">Instagram</a>
@@ -169,6 +209,7 @@
 
   <footer class="site-footer">
     <p>all works copyright Matthew Hitchcock 2025-2026.</p>
+
     <nav aria-label="Footer navigation">
       <a href="#top">Top</a>
       <a href="#about">About</a>
@@ -178,5 +219,3 @@
   </footer>
 </body>
 </html>
-
-
