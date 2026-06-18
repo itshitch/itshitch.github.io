@@ -264,18 +264,25 @@
     }
 
     .case-section {
-      align-items: center;
-    }
+  align-items: center;
+}
 
-    .case-section h2 {
-      align-self: center;
-      justify-self: center;
-      text-align: center;
-    }
+.case-section h2 {
+  align-self: center;
+  justify-self: start;
+  text-align: left;
+}
 
-    .case-section > div {
-      align-self: center;
-    }
+.case-section > div {
+  align-self: center;
+}
+
+@media (max-width: 760px) {
+  .case-section h2 {
+    justify-self: start;
+    text-align: left;
+  }
+}
 
     @media (max-width: 760px) {
       .carousel-slide {
