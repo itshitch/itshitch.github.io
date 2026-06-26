@@ -429,33 +429,27 @@
     <section class="case-section">
       <h2>Overview</h2>
       <div>
-        <p>Write three to five sentences explaining the project, the audience, the ask, and why it mattered. Keep it plain. A hiring manager should understand the assignment without needing extra context.</p>
+        <p>This is a collection of social media posts created for the USC Men’s Club Ultimate Frisbee team. Over the course of four semesters, I've created a series of Instagram graphics designed to give the team a more polished social presence. The audience is primarily people already connected to the team -- players, friends, family, and alumni. However, I wanted to create graphics interesting enough to make someone who doesn't follow the team stop to take a look at what we have going on.  </p>
       </div>
     </section>
 
     <section class="case-section">
-      <h2>Challenge</h2>
+      <h2>Methodology</h2>
       <div>
-        <p>Explain the problem you were solving. Avoid making the project sound bigger than it was. A specific constraint is better than vague ambition.</p>
-        <ul>
-          <li>What needed to change?</li>
-          <li>Who was it for?</li>
-          <li>What constraints shaped the work?</li>
-        </ul>
-      </div>
-    </section>
+        <p>In this project, I’ve handled much of the creative process. I took most of the pictures used during practices and tournaments, then I used Adobe Photoshop to create the graphics. A few times, I’ve used Adobe After Effects to implement motion in a post. Between the main account and our developmental team's, I’ve created 21 posts and 5 stories. I picked 7 of them to show here.
 
-    <section class="case-section">
-      <h2>Approach</h2>
-      <div>
-        <p>Show how you thought. Include research, sketches, moodboards, copy territories, visual routes, feedback, or team collaboration. This is where broad creative range becomes credible.</p>
+With every graphic, I try to make my projects look seamless. I use blending modes & options, filters, thresholds, levels, masks, drop shadows, and neural filters to create the illusion of continuity in a composition. 
+
+Because club sports, especially ultimate teams, do not usually have the same creative resources as university athletics, the goal was to bring more production value to a small program. I wanted the graphics to feel more like something you might see from a professionally produced collegiate athletics account. </p>
       </div>
     </section>
 
     <section class="case-section">
       <h2>Outcome</h2>
       <div>
-        <p>Share what shipped, what you learned, and any results. Results can be quantitative, qualitative, or process-based: approvals, engagement, adoption, clearer positioning, stronger visual consistency, or a better team workflow.</p>
+        <p>The final graphics give Gamecock Ultimate a more polished presence on Instagram. Even though the team doesn't always have major competitive results to promote, the designs create moments that players can share. This helps the account feel more active, introduces us to new audiences, and gives players the chance to share a cool moment to their followers. 
+
+This project also helped me understand the difference between making individual graphics and building a full visual system. While the posts share some common elements like typography, color, and logos, the next step will be turning those choices into a formal social media style guide. That way, future creatives will have an easier time creating graphics that look high quality and consistent, while still giving them. </p>
       </div>
     </section>
   </main>
@@ -603,12 +597,20 @@
 
           slides.forEach(function (slide, slideIndex) {
             var isCurrentSlide = slideIndex === currentIndex;
-            var slideImage = slide.querySelector('img');
+            var slideMedia = slide.querySelector('img, video'); 
+            var slideVideo = slide.querySelector('video');
 
             slide.setAttribute('aria-hidden', isCurrentSlide ? 'false' : 'true');
 
-            if (slideImage) {
-              slideImage.tabIndex = isCurrentSlide ? 0 : -1;
+            if (slideMedia) {
+            slideMedia.tabIndex = isCurrentSlide ? 0 : -1;
+            }
+
+            if (slideVideo && !isCurrentSlide && !slideVideo.paused) {
+            slideVideo.pause();
+            }
+            if (viewport && slides[currentIndex]) {
+            viewport.style.height = slides[currentIndex].offsetHeight + 'px';
             }
           });
 
@@ -621,8 +623,8 @@
           }
 
           if (captionBox) {
-            var currentImage = slides[currentIndex].querySelector('img');
-            var caption = slides[currentIndex].getAttribute('data-caption') || (currentImage ? currentImage.alt : '');
+          var currentMedia = slides[currentIndex].querySelector('img, video');
+          var caption = slides[currentIndex].getAttribute('data-caption') || (currentMedia ? (currentMedia.alt || currentMedia.getAttribute('aria-label') || '') : '');
             captionBox.textContent = caption;
             captionBox.hidden = caption.trim().length === 0;
           }
@@ -644,6 +646,13 @@
         function closestCarouselImage(target) {
           if (!target || typeof target.closest !== 'function') {
             return null;
+            function closestCarouselVideo(target) {
+          if (!target || typeof target.closest !== 'function') {
+            return null;
+          }
+
+  return target.closest('.carousel-slide video');
+}
           }
 
           return target.closest('.carousel-slide img');
@@ -704,6 +713,9 @@
         viewport.addEventListener('pointerdown', function (event) {
           if (typeof event.button === 'number' && event.button !== 0) {
             return;
+            if (closestCarouselVideo(event.target)) {
+            return;
+            }
           }
 
           pointerStartX = event.clientX;
