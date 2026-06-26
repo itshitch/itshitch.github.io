@@ -10,29 +10,28 @@
   <link rel="preconnect" href="https://p.typekit.net" crossorigin>
   <link rel="stylesheet" href="https://use.typekit.net/ipr2mdn.css">
   <link rel="stylesheet" href="styles.css">
-
   <style>
     /* Carousel and lightbox additions for the case-study image area. */
     .case-section {
-  align-items: center;
-}
+      align-items: center;
+    }
 
-.case-section h2 {
-  align-self: center;
-  justify-self: start;
-  text-align: left;
-}
+    .case-section h2 {
+      align-self: center;
+      justify-self: start;
+      text-align: left;
+    }
 
-.case-section > div {
-  align-self: center;
-}
+    .case-section > div {
+      align-self: center;
+    }
 
-@media (max-width: 760px) {
-  .case-section h2 {
-    justify-self: start;
-    text-align: left;
-  }
-}
+    @media (max-width: 760px) {
+      .case-section h2 {
+        justify-self: start;
+        text-align: left;
+      }
+    }
 
     .case-cover.case-carousel {
       position: relative;
@@ -56,6 +55,7 @@
       background: #fff;
       touch-action: pan-y;
       cursor: grab;
+      transition: height 320ms ease;
     }
 
     .carousel-viewport:active {
@@ -64,6 +64,7 @@
 
     .carousel-track {
       display: flex;
+      align-items: flex-start;
       width: 100%;
       background: #fff;
       transform: translate3d(0, 0, 0);
@@ -95,6 +96,28 @@
     }
 
     .carousel-slide img:focus-visible {
+      outline: 3px solid rgba(35, 92, 134, 0.28);
+      outline-offset: 4px;
+    }
+
+    .carousel-slide.video-slide {
+      display: grid;
+      place-items: center;
+    }
+
+    .carousel-slide video {
+      display: block;
+      width: min(100%, 420px);
+      max-height: min(78vh, 760px);
+      aspect-ratio: 9 / 16;
+      height: auto;
+      object-fit: contain;
+      background: #000;
+      border: 1.5px solid rgba(23, 22, 20, 0.34);
+      box-sizing: border-box;
+    }
+
+    .carousel-slide video:focus-visible {
       outline: 3px solid rgba(35, 92, 134, 0.28);
       outline-offset: 4px;
     }
@@ -277,11 +300,11 @@
     }
 
     /* Hide the title/caption under lightbox images */
-#caption,
-.lightbox-caption,
-.lightbox-title {
-  display: none !important;
-}
+    #caption,
+    .lightbox-caption,
+    .lightbox-title {
+      display: none !important;
+    }
 
     @media (max-width: 760px) {
       .carousel-slide {
@@ -290,6 +313,11 @@
 
       .carousel-slide img {
         padding: 0.45rem;
+      }
+
+      .carousel-slide video {
+        width: min(100%, 360px);
+        max-height: 70vh;
       }
 
       .carousel-control {
@@ -336,13 +364,13 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
+      .carousel-viewport,
       .carousel-track {
         transition: none;
       }
     }
   </style>
 </head>
-
 <body>
   <main class="case-main">
     <section class="case-hero" aria-labelledby="case-title">
@@ -376,9 +404,9 @@
       </aside>
     </section>
 
-    <section class="case-cover case-carousel" data-carousel aria-roledescription="carousel" aria-label="Sports team graphics carousel">
+    <section class="case-cover case-carousel" data-carousel aria-roledescription="carousel" aria-label="Sports team graphics and video carousel">
       <div class="carousel-stage">
-        <button class="carousel-control carousel-prev" type="button" data-carousel-prev aria-label="Previous graphic">
+        <button class="carousel-control carousel-prev" type="button" data-carousel-prev aria-label="Previous media">
           <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path d="M15.5 4.5 8 12l7.5 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"></path>
           </svg>
@@ -409,17 +437,24 @@
             <figure class="carousel-slide" data-caption="Graphic Announcing the 2026 Roster">
               <img src="assets/gamecock-ultimate/rosterpost2026draft5.png" alt="Graphic Announcing the 2026 Roster" draggable="false" tabindex="0" role="button" aria-label="Enlarge Graphic Announcing the 2026 Roster">
             </figure>
+
+            <figure class="carousel-slide video-slide" data-caption="dbstory.mp4">
+              <video controls playsinline preload="metadata" width="1080" height="1920" aria-label="dbstory.mp4">
+                <source src="assets/gamecock-ultimate/dbstory.mp4" type="video/mp4">
+                Your browser does not support embedded video.
+              </video>
+            </figure>
           </div>
         </div>
 
-        <button class="carousel-control carousel-next" type="button" data-carousel-next aria-label="Next graphic">
+        <button class="carousel-control carousel-next" type="button" data-carousel-next aria-label="Next media">
           <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path d="M8.5 4.5 16 12l-7.5 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"></path>
           </svg>
         </button>
 
-        <div class="carousel-dots" data-carousel-dots aria-label="Choose graphic"></div>
-        <p class="carousel-counter" data-carousel-counter aria-live="polite">1 / 6</p>
+        <div class="carousel-dots" data-carousel-dots aria-label="Choose media"></div>
+        <p class="carousel-counter" data-carousel-counter aria-live="polite">1 / 7</p>
       </div>
 
       <p class="carousel-caption-box" data-carousel-caption aria-live="polite"></p>
@@ -429,33 +464,31 @@
     <section class="case-section">
       <h2>Overview</h2>
       <div>
-        <p>This is a collection of social media posts created for the USC Men’s Club Ultimate Frisbee team. Over the course of four semesters, I've created a series of Instagram graphics designed to give the team a more polished social presence. The audience is primarily people already connected to the team -- players, friends, family, and alumni. However, I wanted to create graphics interesting enough to make someone who doesn't follow the team stop to take a look at what we have going on.  </p>
+        <p>This is a collection of social media posts created for the USC Men’s Club Ultimate Frisbee team. Over the course of four semesters, I've created a series of Instagram graphics designed to give the team a more polished social presence. The audience is primarily people already connected to the team -- players, friends, family, and alumni. However, I wanted to create graphics interesting enough to make someone who doesn't follow the team stop to take a look at what we have going on.  </p>
       </div>
     </section>
 
     <section class="case-section">
       <h2>Methodology</h2>
       <div>
-        <p>In this project, I’ve handled much of the creative process. I took most of the pictures used during practices and tournaments, then I used Adobe Photoshop to create the graphics. A few times, I’ve used Adobe After Effects to implement motion in a post. Between the main account and our developmental team's, I’ve created 21 posts and 5 stories. I picked 7 of them to show here.
-
-With every graphic, I try to make my projects look seamless. I use blending modes & options, filters, thresholds, levels, masks, drop shadows, and neural filters to create the illusion of continuity in a composition. 
-
-Because club sports, especially ultimate teams, do not usually have the same creative resources as university athletics, the goal was to bring more production value to a small program. I wanted the graphics to feel more like something you might see from a professionally produced collegiate athletics account. </p>
+        <p>In this project, I’ve handled much of the creative process. I took most of the pictures used during practices and tournaments, then I used Adobe Photoshop to create the graphics. A few times, I’ve used Adobe After Effects to implement motion in a post. Between the main account and our developmental team's, I’ve created 21 posts and 5 stories. I picked 7 of them to show here.</p>
+<p>With every graphic, I try to make my projects look seamless. I use blending modes &amp; options, filters, thresholds, levels, masks, drop shadows, and neural filters to create the illusion of continuity in a composition.</p>
+<p>Because club sports, especially ultimate teams, do not usually have the same creative resources as university athletics, the goal was to bring more production value to a small program. I wanted the graphics to feel more like something you might see from a professionally produced collegiate athletics account. </p>
       </div>
     </section>
 
     <section class="case-section">
       <h2>Outcome</h2>
       <div>
-        <p>The final graphics give Gamecock Ultimate a more polished presence on Instagram. Even though the team doesn't always have major competitive results to promote, the designs create moments that players can share. This helps the account feel more active, introduces us to new audiences, and gives players the chance to share a cool moment to their followers. 
-
-This project also helped me understand the difference between making individual graphics and building a full visual system. While the posts share some common elements like typography, color, and logos, the next step will be turning those choices into a formal social media style guide. That way, future creatives will have an easier time creating graphics that look high quality and consistent, while still giving them. </p>
+        <p>The final graphics give Gamecock Ultimate a more polished presence on Instagram. Even though the team doesn't always have major competitive results to promote, the designs create moments that players can share. This helps the account feel more active, introduces us to new audiences, and gives players the chance to share a cool moment to their followers.</p>
+<p>This project also helped me understand the difference between making individual graphics and building a full visual system. While the posts share some common elements like typography, color, and logos, the next step will be turning those choices into a formal social media style guide. That way, future creatives will have an easier time creating graphics that look high quality and consistent, while still giving them.</p>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <p>all works copyright Matthew Hitchcock 2025-2026.</p>
+
     <nav aria-label="Footer navigation">
       <a href="index.html#top">Home</a>
       <a href="index.html#portfolio">Portfolio</a>
@@ -577,13 +610,17 @@ This project also helped me understand the difference between making individual 
 
           dots = slides.map(function (_, index) {
             var dot = document.createElement('button');
+
             dot.className = 'carousel-dot';
             dot.type = 'button';
-            dot.setAttribute('aria-label', 'Show graphic ' + (index + 1));
+            dot.setAttribute('aria-label', 'Show media ' + (index + 1));
+
             dot.addEventListener('click', function () {
               goToSlide(index);
             });
+
             dotsContainer.appendChild(dot);
+
             return dot;
           });
         }
@@ -592,25 +629,38 @@ This project also helped me understand the difference between making individual 
           return ((index % slides.length) + slides.length) % slides.length;
         }
 
+        function syncViewportHeight() {
+          if (!viewport || !slides[currentIndex]) {
+            return;
+          }
+
+          var setHeight = function () {
+            viewport.style.height = slides[currentIndex].offsetHeight + 'px';
+          };
+
+          if (window.requestAnimationFrame) {
+            window.requestAnimationFrame(setHeight);
+          } else {
+            setHeight();
+          }
+        }
+
         function updateCarousel() {
           track.style.transform = 'translate3d(-' + (currentIndex * 100) + '%, 0, 0)';
 
           slides.forEach(function (slide, slideIndex) {
             var isCurrentSlide = slideIndex === currentIndex;
-            var slideMedia = slide.querySelector('img, video'); 
+            var slideMedia = slide.querySelector('img, video');
             var slideVideo = slide.querySelector('video');
 
             slide.setAttribute('aria-hidden', isCurrentSlide ? 'false' : 'true');
 
             if (slideMedia) {
-            slideMedia.tabIndex = isCurrentSlide ? 0 : -1;
+              slideMedia.tabIndex = isCurrentSlide ? 0 : -1;
             }
 
             if (slideVideo && !isCurrentSlide && !slideVideo.paused) {
-            slideVideo.pause();
-            }
-            if (viewport && slides[currentIndex]) {
-            viewport.style.height = slides[currentIndex].offsetHeight + 'px';
+              slideVideo.pause();
             }
           });
 
@@ -623,11 +673,18 @@ This project also helped me understand the difference between making individual 
           }
 
           if (captionBox) {
-          var currentMedia = slides[currentIndex].querySelector('img, video');
-          var caption = slides[currentIndex].getAttribute('data-caption') || (currentMedia ? (currentMedia.alt || currentMedia.getAttribute('aria-label') || '') : '');
+            var currentMedia = slides[currentIndex].querySelector('img, video');
+            var caption = slides[currentIndex].getAttribute('data-caption') || (
+              currentMedia
+                ? currentMedia.alt || currentMedia.getAttribute('aria-label') || ''
+                : ''
+            );
+
             captionBox.textContent = caption;
             captionBox.hidden = caption.trim().length === 0;
           }
+
+          syncViewportHeight();
         }
 
         function goToSlide(index) {
@@ -646,16 +703,17 @@ This project also helped me understand the difference between making individual 
         function closestCarouselImage(target) {
           if (!target || typeof target.closest !== 'function') {
             return null;
-            function closestCarouselVideo(target) {
+          }
+
+          return target.closest('.carousel-slide img');
+        }
+
+        function closestCarouselVideo(target) {
           if (!target || typeof target.closest !== 'function') {
             return null;
           }
 
-  return target.closest('.carousel-slide video');
-}
-          }
-
-          return target.closest('.carousel-slide img');
+          return target.closest('.carousel-slide video');
         }
 
         function slideForImage(image) {
@@ -676,29 +734,38 @@ This project also helped me understand the difference between making individual 
 
         slides.forEach(function (slide) {
           var image = slide.querySelector('img');
+          var video = slide.querySelector('video');
 
-          if (!image) {
-            return;
+          if (image) {
+            image.addEventListener('click', function (event) {
+              if (suppressNextImageClick) {
+                event.preventDefault();
+                return;
+              }
+
+              openLightbox(slide, image);
+            });
+
+            image.addEventListener('keydown', function (event) {
+              if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                openLightbox(slide, image);
+              }
+            });
+
+            image.addEventListener('load', syncViewportHeight);
           }
 
-          image.addEventListener('click', function (event) {
-            if (suppressNextImageClick) {
-              event.preventDefault();
-              return;
-            }
-
-            openLightbox(slide, image);
-          });
-
-          image.addEventListener('keydown', function (event) {
-            if (event.key === 'Enter' || event.key === ' ') {
-              event.preventDefault();
-              openLightbox(slide, image);
-            }
-          });
+          if (video) {
+            video.addEventListener('loadedmetadata', syncViewportHeight);
+          }
         });
 
         viewport.addEventListener('keydown', function (event) {
+          if (closestCarouselVideo(event.target)) {
+            return;
+          }
+
           if (event.key === 'ArrowLeft') {
             event.preventDefault();
             showPrevious();
@@ -713,9 +780,10 @@ This project also helped me understand the difference between making individual 
         viewport.addEventListener('pointerdown', function (event) {
           if (typeof event.button === 'number' && event.button !== 0) {
             return;
-            if (closestCarouselVideo(event.target)) {
+          }
+
+          if (closestCarouselVideo(event.target)) {
             return;
-            }
           }
 
           pointerStartX = event.clientX;
@@ -762,6 +830,7 @@ This project also helped me understand the difference between making individual 
               openLightbox(slideForImage(startedImage), startedImage);
 
               suppressNextImageClick = true;
+
               window.setTimeout(function () {
                 suppressNextImageClick = false;
               }, 120);
@@ -783,6 +852,8 @@ This project also helped me understand the difference between making individual 
           pointerStartedOnImage = null;
           suppressNextImageClick = false;
         });
+
+        window.addEventListener('resize', syncViewportHeight);
 
         if (slides.length <= 1) {
           if (prevButton) {
