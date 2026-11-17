@@ -107,10 +107,8 @@
       /* Fallback wash, then a quiet center and clear space behind the marquees. */
       background: rgba(251,243,229,.78);
       background:
-        linear-gradient(180deg,
-          var(--hw-paper) 0, color-mix(in srgb,var(--hw-paper) 94%,transparent) 3rem,
-          transparent 7rem, transparent calc(100% - 7rem),
-          color-mix(in srgb,var(--hw-paper) 94%,transparent) calc(100% - 3rem), var(--hw-paper)),
+       background:
+  radial-gradient(ellipse at center, 94%,transparent) calc(100% - 3rem), var(--hw-paper)),
         radial-gradient(ellipse at center,
           color-mix(in srgb,var(--hw-paper) 96%,transparent) 0%,
           color-mix(in srgb,var(--hw-paper) 93%,transparent) 18%,
