@@ -33,45 +33,85 @@
     text-align: left;
   }
 }
-    .case-cover.case-video {
+    /* Carousel framing and controls follow the Gamecock Ultimate case study. */
+    .case-cover.case-carousel {
       position: relative;
       overflow: hidden;
+      height: auto;
+      aspect-ratio: auto;
       background: #fff;
       box-shadow: none;
     }
 
-    .case-video-stage {
+    .case-carousel .carousel-stage {
       position: relative;
+      background: #fff;
+    }
+
+    .case-carousel .carousel-viewport {
+      overflow: hidden;
+      width: 100%;
+      touch-action: pan-y;
+      transition: height 320ms ease;
+    }
+
+    .case-carousel .carousel-track {
+      display: flex;
+      align-items: flex-start;
+      width: 100%;
+      transform: translate3d(0, 0, 0);
+      transition: transform 320ms ease;
+    }
+
+    .case-carousel .carousel-slide {
+      display: grid;
+      place-items: center;
+      flex: 0 0 100%;
+      min-width: 0;
+      margin: 0;
       padding: clamp(0.65rem, 1.7vw, 1.15rem);
       background: #fff;
       box-sizing: border-box;
     }
 
-    .case-video-frame {
+    .case-carousel .carousel-media {
       position: relative;
       display: grid;
       place-items: center;
       width: 100%;
-      aspect-ratio: 16 / 9;
+      max-width: calc(min(74vh, 760px) * var(--media-ratio, 1.777777778));
+      min-width: 0;
+      min-height: 0;
+      aspect-ratio: var(--media-ratio, 1.777777778);
       overflow: hidden;
       background: #fbf6eb;
       border: 1.5px solid rgba(23, 22, 20, 0.34);
       box-sizing: border-box;
     }
 
-    .case-video-frame iframe {
+    .case-carousel .carousel-media iframe,
+    .case-carousel .carousel-artwork {
+      position: absolute;
+      inset: 0;
       display: block;
       width: 100%;
       height: 100%;
+      max-height: none;
+      aspect-ratio: auto;
+      object-fit: contain;
       border: 0;
-      background: #fbf6eb;
+      box-sizing: border-box;
     }
 
-    .case-video-frame iframe[hidden] {
-      display: none;
+    .case-carousel .carousel-artwork {
+      padding: clamp(0.55rem, 1.4vw, 0.95rem);
+      cursor: zoom-in;
+      user-select: none;
     }
 
-    .video-placeholder {
+    .case-carousel .carousel-placeholder {
+      position: absolute;
+      inset: 0;
       display: grid;
       place-items: center;
       width: 100%;
@@ -82,13 +122,10 @@
       font-family: "slight-chance", ui-sans-serif, system-ui, sans-serif;
       font-size: 0.9rem;
       line-height: 1.4;
+      box-sizing: border-box;
     }
 
-    .video-placeholder[hidden] {
-      display: none;
-    }
-
-    .video-placeholder strong {
+    .case-carousel .carousel-placeholder strong {
       display: block;
       margin-bottom: 0.3rem;
       color: var(--ink, #24201f);
@@ -98,7 +135,111 @@
       text-transform: uppercase;
     }
 
-    .case-video-description {
+    .case-carousel [hidden] {
+      display: none !important;
+    }
+
+    .case-carousel .carousel-control {
+      position: absolute;
+      top: 50%;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      padding: 0;
+      color: var(--ink, #24201f);
+      background: rgba(255, 250, 240, 0.95);
+      border: 1.5px solid var(--ink, #24201f);
+      border-radius: 0;
+      box-shadow: var(--button-shadow, 3px 3px 0 rgba(36, 32, 31, 0.45));
+      cursor: pointer;
+      transform: translateY(-50%);
+      transition: box-shadow 180ms ease, background 180ms ease;
+    }
+
+    .case-carousel .carousel-control:hover,
+    .case-carousel .carousel-control:focus-visible {
+      background: #fffaf0;
+      box-shadow: var(--block-shadow-strong, 5px 5px 0 rgba(36, 32, 31, 0.55));
+    }
+
+    .case-carousel :focus-visible {
+      outline: 3px solid rgba(35, 92, 134, 0.4);
+      outline-offset: 3px;
+    }
+
+    .case-carousel .carousel-control svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .case-carousel .carousel-prev {
+      left: 1rem;
+    }
+
+    .case-carousel .carousel-next {
+      right: 1rem;
+    }
+
+    /* Keep pagination below the media, clear of the YouTube player controls. */
+    .case-carousel .carousel-pagination {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 0.5rem;
+      min-height: 2.8rem;
+      padding: 0 1rem 0.35rem;
+      box-sizing: border-box;
+    }
+
+    .case-carousel .carousel-dots {
+      grid-column: 2;
+      display: flex;
+      align-items: center;
+      gap: 0.15rem;
+    }
+
+    .case-carousel .carousel-dot {
+      display: grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      padding: 0;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+    }
+
+    .case-carousel .carousel-dot::before {
+      content: "";
+      width: 0.62rem;
+      height: 0.62rem;
+      background: rgba(255, 250, 240, 0.92);
+      border: 1.5px solid var(--ink, #24201f);
+      border-radius: 999px;
+      box-sizing: border-box;
+    }
+
+    .case-carousel .carousel-dot[aria-current="true"]::before {
+      background: var(--ink, #24201f);
+    }
+
+    .case-carousel .carousel-counter {
+      grid-column: 3;
+      justify-self: end;
+      margin: 0;
+      padding: 0.4rem 0.58rem 0.34rem;
+      color: var(--ink, #24201f);
+      background: rgba(255, 250, 240, 0.92);
+      border: 1px solid rgba(36, 32, 31, 0.22);
+      font-family: "slight-chance", ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .case-carousel .carousel-caption-box {
       margin: 0;
       padding: 0.75rem 0.9rem 0.7rem;
       color: var(--ink, #24201f);
@@ -106,6 +247,124 @@
       border-top: 1.5px solid rgba(36, 32, 31, 0.22);
       font-size: 0.9rem;
       line-height: 1.4;
+    }
+
+    .case-carousel .carousel-zoom-hint {
+      margin: 0;
+      padding: 0 0.9rem 0.85rem;
+      color: rgba(23, 22, 20, 0.66);
+      font-size: 0.72rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .coke-image-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      width: 100%;
+      height: 100%;
+      max-width: none;
+      max-height: none;
+      margin: 0;
+      padding: clamp(1rem, 4vw, 3rem);
+      background: rgba(18, 17, 15, 0.84);
+      border: 0;
+      box-sizing: border-box;
+    }
+
+    .coke-image-lightbox[open] {
+      display: grid;
+      place-items: center;
+    }
+
+    .coke-image-lightbox::backdrop {
+      background: rgba(18, 17, 15, 0.3);
+    }
+
+    .coke-image-lightbox .lightbox-image {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: min(92vw, 1200px);
+      max-height: 82vh;
+      object-fit: contain;
+      background: #fff;
+      border: 1.5px solid rgba(255, 255, 255, 0.72);
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    .coke-image-lightbox .lightbox-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      color: #fffaf0;
+      background: rgba(18, 17, 15, 0.72);
+      border: 1.5px solid rgba(255, 250, 240, 0.78);
+      border-radius: 999px;
+      font-size: 2rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .coke-image-lightbox .lightbox-close:focus-visible {
+      outline: 3px solid rgba(255, 250, 240, 0.6);
+      outline-offset: 3px;
+    }
+
+    @media (max-width: 760px) {
+      .case-carousel .carousel-slide {
+        padding: 0.55rem;
+      }
+
+      .case-carousel .carousel-artwork {
+        padding: 0.45rem;
+      }
+
+      .case-carousel .carousel-control {
+        width: 40px;
+        height: 40px;
+      }
+
+      .case-carousel .carousel-prev {
+        left: 0.7rem;
+      }
+
+      .case-carousel .carousel-next {
+        right: 0.7rem;
+      }
+
+      .case-carousel .carousel-pagination {
+        padding-right: 0.7rem;
+        padding-left: 0.7rem;
+      }
+
+      .case-carousel .carousel-caption-box {
+        padding: 0.65rem 0.75rem 0.6rem;
+        font-size: 0.84rem;
+      }
+
+      .case-carousel .carousel-zoom-hint {
+        padding: 0 0.75rem 0.75rem;
+        font-size: 0.68rem;
+      }
+
+      .coke-image-lightbox .lightbox-image {
+        max-height: 76vh;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .case-carousel .carousel-viewport,
+      .case-carousel .carousel-track,
+      .case-carousel .carousel-control {
+        transition: none;
+      }
     }
   </style>
 </head>
@@ -142,28 +401,76 @@
       </aside>
     </section>
 
-    <div class="case-cover case-video">
-      <div class="case-video-stage">
-        <!-- Paste your YouTube URL in data-youtube-url below. Normal YouTube, youtu.be, Shorts, and embed links are supported. -->
-        <div class="case-video-frame" data-youtube-url="https://youtu.be/tFWvyr9qLNc">
-          <iframe
-            title="Cherry Coke Float Promotional Demo"
-            src=""
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-            hidden></iframe>
-          <div class="video-placeholder" aria-hidden="false">
-            <span>
-              <strong>YouTube embed space</strong>
-              Paste your YouTube link into the data-youtube-url field in this file.
-            </span>
+    <section class="case-cover case-carousel" data-carousel aria-roledescription="carousel" aria-label="Cherry Coke Float campaign media">
+      <div class="carousel-stage">
+        <button class="carousel-control carousel-prev" type="button" data-carousel-prev aria-label="Previous media" aria-controls="coke-carousel-track">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M15.5 4.5 8 12l7.5 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"></path>
+          </svg>
+        </button>
+
+        <div class="carousel-viewport" data-carousel-viewport tabindex="0" aria-label="Campaign media; use left and right arrow keys to change slides">
+          <div class="carousel-track" id="coke-carousel-track" data-carousel-track>
+            <figure class="carousel-slide" data-caption="This is a short commercial for the Coca-Cola Cherry Float Zero Sugar, highlighting its taste without compromising calories." role="group" aria-roledescription="slide" aria-label="1 of 4: Promotional video">
+              <!-- The YouTube video keeps its 16:9 frame. Paste a replacement URL below if needed. -->
+              <div class="carousel-media" style="--media-ratio: 1.777777778;" data-youtube-url="https://youtu.be/tFWvyr9qLNc">
+                <iframe
+                  title="Cherry Coke Float Promotional Demo"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                  hidden></iframe>
+                <div class="carousel-placeholder video-placeholder">
+                  <span><strong>YouTube embed space</strong>Promotional video &middot; 16:9</span>
+                </div>
+              </div>
+            </figure>
+
+            <!-- Add each finished image path to its data-image-src field below.
+                 Example: data-image-src="assets/coke-float/social-post.jpg"
+                 The placeholder is replaced automatically when the image loads.
+                 Loaded images keep their actual aspect ratio and can be enlarged. -->
+            <figure class="carousel-slide" data-image-src="" data-image-alt="Cherry Coke Float social post" data-caption="Social post" role="group" aria-roledescription="slide" aria-label="2 of 4: Social post" aria-hidden="true" inert>
+              <div class="carousel-media" style="--media-ratio: 0.75;">
+                <div class="carousel-placeholder">
+                  <span><strong>Social post</strong>Artwork placeholder &middot; 3:4</span>
+                </div>
+              </div>
+            </figure>
+
+            <figure class="carousel-slide" data-image-src="" data-image-alt="Cherry Coke Float billboard mockup" data-caption="Billboard mockup" role="group" aria-roledescription="slide" aria-label="3 of 4: Billboard mockup" aria-hidden="true" inert>
+              <div class="carousel-media" style="--media-ratio: 1.25;">
+                <div class="carousel-placeholder">
+                  <span><strong>Billboard mockup</strong>Artwork placeholder &middot; 5:4</span>
+                </div>
+              </div>
+            </figure>
+
+            <figure class="carousel-slide" data-image-src="" data-image-alt="Cherry Coke Float plane wrap mockup" data-caption="Plane wrap mockup" role="group" aria-roledescription="slide" aria-label="4 of 4: Plane wrap mockup" aria-hidden="true" inert>
+              <div class="carousel-media" style="--media-ratio: 1.25;">
+                <div class="carousel-placeholder">
+                  <span><strong>Plane wrap mockup</strong>Artwork placeholder &middot; 5:4</span>
+                </div>
+              </div>
+            </figure>
           </div>
         </div>
+
+        <button class="carousel-control carousel-next" type="button" data-carousel-next aria-label="Next media" aria-controls="coke-carousel-track">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M8.5 4.5 16 12l-7.5 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"></path>
+          </svg>
+        </button>
       </div>
-      <p class="case-video-description">This is a short commercial for the Coca-Cola Cherry Float Zero Sugar, highlighting its taste without compromising calories.</p>
-    </div>
+
+      <div class="carousel-pagination">
+        <div class="carousel-dots" data-carousel-dots role="group" aria-label="Choose media"></div>
+        <p class="carousel-counter" data-carousel-counter aria-live="polite" aria-atomic="true">1 / 4</p>
+      </div>
+      <p class="carousel-caption-box" data-carousel-caption>This is a short commercial for the Coca-Cola Cherry Float Zero Sugar, highlighting its taste without compromising calories.</p>
+      <p class="carousel-zoom-hint" data-carousel-zoom-hint hidden>Click image to enlarge</p>
+    </section>
 
     <section class="case-section">
       <h2>Overview</h2>
@@ -199,6 +506,11 @@
     </nav>
   </footer>
 
+  <dialog class="coke-image-lightbox" data-lightbox aria-label="Expanded image preview">
+    <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close image preview">&times;</button>
+    <img class="lightbox-image" data-lightbox-image alt="">
+  </dialog>
+
   <script>
     (function () {
       function getYouTubeEmbedUrl(rawUrl) {
@@ -230,24 +542,211 @@
         }
       }
 
-      var frames = document.querySelectorAll("[data-youtube-url]");
+      var lightbox = document.querySelector('[data-lightbox]');
+      var lightboxImage = document.querySelector('[data-lightbox-image]');
+      var lightboxClose = document.querySelector('[data-lightbox-close]');
+      var lightboxTrigger = null;
+      var previousOverflow = '';
 
-      frames.forEach(function (frame) {
-        var iframe = frame.querySelector("iframe");
-        var placeholder = frame.querySelector(".video-placeholder");
-        var embedUrl = getYouTubeEmbedUrl(frame.getAttribute("data-youtube-url"));
-
-        if (!iframe || !embedUrl) {
+      function openLightbox(image) {
+        if (!lightbox || !lightboxImage || image.hidden) {
           return;
         }
+        lightboxTrigger = image;
+        previousOverflow = document.body.style.overflow;
+        lightboxImage.src = image.currentSrc || image.src;
+        lightboxImage.alt = image.alt;
+        lightbox.showModal();
+        document.body.style.overflow = 'hidden';
+        lightboxClose.focus();
+      }
 
-        iframe.src = embedUrl;
-        iframe.hidden = false;
-
-        if (placeholder) {
-          placeholder.hidden = true;
-          placeholder.setAttribute("aria-hidden", "true");
+      lightboxClose.addEventListener('click', function () {
+        lightbox.close();
+      });
+      lightbox.addEventListener('click', function (event) {
+        if (event.target === lightbox) {
+          lightbox.close();
         }
+      });
+      lightbox.addEventListener('close', function () {
+        document.body.style.overflow = previousOverflow;
+        lightboxImage.removeAttribute('src');
+        lightboxImage.alt = '';
+        if (lightboxTrigger) {
+          lightboxTrigger.focus();
+          lightboxTrigger = null;
+        }
+      });
+
+      document.querySelectorAll('[data-carousel]').forEach(function (carousel) {
+        var track = carousel.querySelector('[data-carousel-track]');
+        var viewport = carousel.querySelector('[data-carousel-viewport]');
+        var slides = Array.prototype.slice.call(track.children);
+        var counter = carousel.querySelector('[data-carousel-counter]');
+        var caption = carousel.querySelector('[data-carousel-caption]');
+        var zoomHint = carousel.querySelector('[data-carousel-zoom-hint]');
+        var dotsContainer = carousel.querySelector('[data-carousel-dots]');
+        var currentIndex = 0;
+        var swipeStart = null;
+        var suppressImageClick = false;
+
+        function syncViewportHeight() {
+          window.requestAnimationFrame(function () {
+            viewport.style.height = slides[currentIndex].offsetHeight + 'px';
+          });
+        }
+
+        function updateCarousel() {
+          track.style.transform = 'translate3d(-' + (currentIndex * 100) + '%, 0, 0)';
+          slides.forEach(function (slide, index) {
+            var isCurrent = index === currentIndex;
+            slide.inert = !isCurrent;
+            slide.setAttribute('aria-hidden', isCurrent ? 'false' : 'true');
+            slide.querySelectorAll('iframe, img').forEach(function (media) {
+              media.tabIndex = isCurrent ? 0 : -1;
+            });
+          });
+          dots.forEach(function (dot, index) {
+            dot.setAttribute('aria-current', index === currentIndex ? 'true' : 'false');
+          });
+          counter.textContent = (currentIndex + 1) + ' / ' + slides.length;
+          caption.textContent = slides[currentIndex].getAttribute('data-caption') || '';
+          var image = slides[currentIndex].querySelector('.carousel-artwork');
+          zoomHint.hidden = !image || image.hidden;
+          syncViewportHeight();
+        }
+
+        function goToSlide(index) {
+          var nextIndex = ((index % slides.length) + slides.length) % slides.length;
+          if (nextIndex !== currentIndex) {
+            var player = slides[currentIndex].querySelector('iframe');
+            if (player && player.contentWindow && !player.hidden) {
+              player.contentWindow.postMessage(JSON.stringify({
+                event: 'command', func: 'pauseVideo', args: []
+              }), 'https://www.youtube.com');
+            }
+          }
+          currentIndex = nextIndex;
+          updateCarousel();
+        }
+
+        var dots = slides.map(function (slide, index) {
+          var dot = document.createElement('button');
+          dot.className = 'carousel-dot';
+          dot.type = 'button';
+          dot.setAttribute('aria-label', 'Show ' + slide.getAttribute('aria-label'));
+          dot.setAttribute('aria-controls', track.id);
+          dot.addEventListener('click', function () { goToSlide(index); });
+          dotsContainer.appendChild(dot);
+          return dot;
+        });
+
+        slides.forEach(function (slide) {
+          var frame = slide.querySelector('.carousel-media');
+          var placeholder = frame.querySelector('.carousel-placeholder');
+          var player = frame.querySelector('iframe');
+
+          if (player) {
+            var embedUrl = getYouTubeEmbedUrl(frame.getAttribute('data-youtube-url'));
+            if (embedUrl) {
+              player.src = embedUrl + '&enablejsapi=1';
+              player.hidden = false;
+              placeholder.hidden = true;
+            }
+          }
+
+          var imageSrc = (slide.getAttribute('data-image-src') || '').trim();
+          if (!imageSrc) {
+            return;
+          }
+
+          var image = document.createElement('img');
+          image.className = 'carousel-artwork';
+          image.alt = slide.getAttribute('data-image-alt') || slide.getAttribute('data-caption') || '';
+          image.draggable = false;
+          image.loading = 'lazy';
+          image.decoding = 'async';
+          image.hidden = true;
+          image.setAttribute('role', 'button');
+          image.setAttribute('aria-label', 'Enlarge ' + image.alt);
+          image.addEventListener('load', function () {
+            if (image.naturalWidth && image.naturalHeight) {
+              frame.style.setProperty('--media-ratio', image.naturalWidth / image.naturalHeight);
+            }
+            image.hidden = false;
+            placeholder.hidden = true;
+            updateCarousel();
+          });
+          image.addEventListener('error', function () {
+            image.hidden = true;
+            placeholder.hidden = false;
+            updateCarousel();
+          });
+          image.addEventListener('click', function () {
+            if (!suppressImageClick) {
+              openLightbox(image);
+            }
+          });
+          image.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              openLightbox(image);
+            }
+          });
+          frame.appendChild(image);
+          image.src = imageSrc;
+        });
+
+        carousel.querySelector('[data-carousel-prev]').addEventListener('click', function () {
+          goToSlide(currentIndex - 1);
+        });
+        carousel.querySelector('[data-carousel-next]').addEventListener('click', function () {
+          goToSlide(currentIndex + 1);
+        });
+
+        carousel.addEventListener('keydown', function (event) {
+          if (event.target.closest('iframe, video, input, textarea, select')) {
+            return;
+          }
+          var targetIndex;
+          if (event.key === 'ArrowLeft') { targetIndex = currentIndex - 1; }
+          if (event.key === 'ArrowRight') { targetIndex = currentIndex + 1; }
+          if (event.key === 'Home') { targetIndex = 0; }
+          if (event.key === 'End') { targetIndex = slides.length - 1; }
+          if (typeof targetIndex === 'number') {
+            event.preventDefault();
+            goToSlide(targetIndex);
+          }
+        });
+
+        viewport.addEventListener('pointerdown', function (event) {
+          if (!event.isPrimary || event.button !== 0 || event.target.closest('iframe, video, button, a')) {
+            return;
+          }
+          swipeStart = { x: event.clientX, y: event.clientY, id: event.pointerId };
+          suppressImageClick = false;
+        });
+        window.addEventListener('pointerup', function (event) {
+          if (!swipeStart || event.pointerId !== swipeStart.id) {
+            return;
+          }
+          var deltaX = event.clientX - swipeStart.x;
+          var deltaY = event.clientY - swipeStart.y;
+          swipeStart = null;
+          if (Math.abs(deltaX) > 48 && Math.abs(deltaX) > Math.abs(deltaY)) {
+            suppressImageClick = true;
+            goToSlide(currentIndex + (deltaX < 0 ? 1 : -1));
+            window.setTimeout(function () { suppressImageClick = false; }, 0);
+          }
+        });
+        window.addEventListener('pointercancel', function () { swipeStart = null; });
+        window.addEventListener('resize', syncViewportHeight);
+        if ('ResizeObserver' in window) {
+          var observer = new ResizeObserver(syncViewportHeight);
+          slides.forEach(function (slide) { observer.observe(slide); });
+        }
+        updateCarousel();
       });
     }());
   </script>
