@@ -401,68 +401,42 @@
       </aside>
     </section>
 
-    <section class="case-cover case-carousel" data-carousel aria-roledescription="carousel" aria-label="Cherry Coke Float campaign media">
+     <section class="case-cover case-carousel" data-carousel aria-roledescription="carousel" aria-label="Sports team graphics carousel">
       <div class="carousel-stage">
-        <button class="carousel-control carousel-prev" type="button" data-carousel-prev aria-label="Previous media" aria-controls="coke-carousel-track">
+        <button class="carousel-control carousel-prev" type="button" data-carousel-prev aria-label="Previous graphic">
           <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path d="M15.5 4.5 8 12l7.5 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"></path>
           </svg>
         </button>
 
-        <div class="carousel-viewport" data-carousel-viewport tabindex="0" aria-label="Campaign media; use left and right arrow keys to change slides">
-          <div class="carousel-track" id="coke-carousel-track" data-carousel-track>
-            <figure class="carousel-slide" data-caption="This is a short commercial for the Coca-Cola Cherry Float Zero Sugar, highlighting its taste without compromising calories." role="group" aria-roledescription="slide" aria-label="1 of 4: Promotional video">
-              <!-- The YouTube video keeps its 16:9 frame. Paste a replacement URL below if needed. -->
-              <div class="carousel-media" style="--media-ratio: 1.777777778;" data-youtube-url="https://youtu.be/tFWvyr9qLNc">
-                <iframe
-                  title="Cherry Coke Float Promotional Demo"
-                  loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allowfullscreen
-                  hidden></iframe>
-                <div class="carousel-placeholder video-placeholder">
-                  <span><strong>YouTube embed space</strong>Promotional video &middot; 16:9</span>
-                </div>
-              </div>
+        <div class="carousel-viewport" data-carousel-viewport tabindex="0">
+          <div class="carousel-track" data-carousel-track>
+            <figure class="carousel-slide" data-caption="">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/tFWvyr9qLNc?si=B2X0cKnrv3k570Id" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </figure>
 
-            <!-- Add each finished image path to its data-image-src field below.
-                 Example: data-image-src="assets/coke-float/social-post.jpg"
-                 The placeholder is replaced automatically when the image loads.
-                 Loaded images keep their actual aspect ratio and can be enlarged. -->
-            <figure class="carousel-slide" data-image-src="assets/CCFZSSocialMediaPost.png" data-image-alt="Cherry Coke Float social post" data-caption="Social post" role="group" aria-roledescription="slide" aria-label="2 of 4: Social post" aria-hidden="true" inert>
-              <div class="carousel-media" style="--media-ratio: 0.75;">
-                <div class="carousel-placeholder">
-                  <span><strong>Social post</strong>Artwork placeholder &middot; 3:4</span>
-                </div>
-              </div>
+           <figure class="carousel-slide" data-caption="">
+              <img src="assets/ccfzsbillboard.jpg" alt="" draggable="false" tabindex="0" role="button" aria-label="Enlarge">
             </figure>
 
-            <figure class="carousel-slide" data-image-src="assets/ccfzsbillboard.jpg" data-image-alt="Cherry Coke Float billboard mockup" data-caption="Billboard mockup" role="group" aria-roledescription="slide" aria-label="3 of 4: Billboard mockup" aria-hidden="true" inert>
-              <div class="carousel-media" style="--media-ratio: 1.25;">
-                <div class="carousel-placeholder">
-                  <span><strong>Billboard mockup</strong>Artwork placeholder &middot; 5:4</span>
-                </div>
-              </div>
-            </figure>
 
-            <figure class="carousel-slide" data-image-src="assets/CCFZSAirplaneMockup.jpg" data-image-alt="Cherry Coke Float plane wrap mockup" data-caption="Plane wrap mockup" role="group" aria-roledescription="slide" aria-label="4 of 4: Plane wrap mockup" aria-hidden="true" inert>
-              <div class="carousel-media" style="--media-ratio: 1.25;">
-                <div class="carousel-placeholder">
-                  <span><strong>Plane wrap mockup</strong>Artwork placeholder &middot; 5:4</span>
-                </div>
-              </div>
-            </figure>
           </div>
         </div>
 
-        <button class="carousel-control carousel-next" type="button" data-carousel-next aria-label="Next media" aria-controls="coke-carousel-track">
+        <button class="carousel-control carousel-next" type="button" data-carousel-next aria-label="Next graphic">
           <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path d="M8.5 4.5 16 12l-7.5 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"></path>
           </svg>
         </button>
+
+        <div class="carousel-dots" data-carousel-dots aria-label="Choose graphic"></div>
+        <p class="carousel-counter" data-carousel-counter aria-live="polite">1 / 9</p>
       </div>
+
+      <p class="carousel-caption-box" data-carousel-caption aria-live="polite"></p>
+      <p class="carousel-zoom-hint">Click image to enlarge</p>
+    </section>
+
 
       <div class="carousel-pagination">
         <div class="carousel-dots" data-carousel-dots role="group" aria-label="Choose media"></div>
